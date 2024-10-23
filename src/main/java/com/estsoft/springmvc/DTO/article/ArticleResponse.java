@@ -13,23 +13,23 @@ import java.time.LocalDateTime;
 @Schema(description = "블로그 조회 결과")
 public class ArticleResponse {
     @Schema(description = "블로그 ID", type = "Long")
-    private Long id;
+    private Long articleId;
     @Schema(description = "블로그 제목", type = "String")
     private String title;
     @Schema(description = "블로그 내용", type = "String")
     private String content;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private String createdAt;
+    private LocalDateTime createdAt;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private String updatedAt;
+    private LocalDateTime updatedAt;
 
     @Builder
     public ArticleResponse(Article article) {
-        this.id = article.getId();
-        this.title = article.getTitle();
-        this.content = article.getContent();
-        this.createdAt = article.getCreatedAt();
-        this.updatedAt = article.getUpdatedAt();
+        articleId = article.getId();
+        title = article.getTitle();
+        content = article.getContent();
+        createdAt = article.getCreatedAt();
+        updatedAt = article.getUpdatedAt();
     }
 }

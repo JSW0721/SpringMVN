@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "article_id")
+    @Column(name = "omment_id")
     private Long id;
 
     @Column

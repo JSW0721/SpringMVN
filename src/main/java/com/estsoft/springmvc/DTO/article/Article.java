@@ -42,7 +42,7 @@ public class Article {
     }
 
     public ArticleResponse toArticleResponse() {
-        return new ArticleResponse(id, title, content, createdAt);
+        return new ArticleResponse(id, title, content, createdAt, updatedAt);
     }
     public void update(String title, String content) {
         //if(title.isBlank()){this.title = title};
