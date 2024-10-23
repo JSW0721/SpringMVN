@@ -1,10 +1,8 @@
 package com.estsoft.springmvc.DTO.article;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -20,14 +18,18 @@ public class ArticleResponse {
     private String title;
     @Schema(description = "블로그 내용", type = "String")
     private String content;
-    @Schema(description = "생성 시간", type = "LocalDateTime")
-    private LocalDateTime createdAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private String createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private String updatedAt;
 
+    @Builder
     public ArticleResponse(Article article) {
-        id = article.getId();
-        title = article.getTitle();
-        content = article.getContent();
-        createdAt = article.getCreatedAt();
+        this.id = article.getId();
+        this.title = article.getTitle();
+        this.content = article.getContent();
+        this.createdAt = article.getCreatedAt();
+        this.updatedAt = article.getUpdatedAt();
     }
 }

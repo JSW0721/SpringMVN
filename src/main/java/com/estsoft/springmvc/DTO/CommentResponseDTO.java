@@ -6,8 +6,9 @@ import com.estsoft.springmvc.domain.Comment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.format.DateTimeFormatter;
 
-import java.time.LocalDateTime;
+import static com.estsoft.springmvc.util.DateFormatUtil.formatter;
 
 @Getter
 @Setter
@@ -16,13 +17,16 @@ public class CommentResponseDTO {
     private Long commentid;
     private Long articleid;
     private String body;
-    private LocalDateTime createdAt;
+    private String createdAt;  //yyyy-mm-dd hh:mm:ss
     private ArticleResponse article;
 
     public CommentResponseDTO(Comment comment) {
+        Article articleFormComment = comment.getArticle();
+
         commentid = comment.getId();
+        articleid = articleFormComment.getId();
         body = comment.getBody();
-        createdAt = comment.getCreateAt();
-        article = new ArticleResponse(comment.getArticle());
+        createdAt = comment.getCreateAt().format(formatter);
+        article = new ArticleResponse(articleFormComment);
     }
 }

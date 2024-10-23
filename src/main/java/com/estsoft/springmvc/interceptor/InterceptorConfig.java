@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new FirstInterceptor()).addPathPatterns("/books");
+        registry.addInterceptor(new FirstInterceptor()).order(1).addPathPatterns("/books");
+        registry.addInterceptor(new SecondInterceptor()).order(2).addPathPatterns("/books");
     }
 }

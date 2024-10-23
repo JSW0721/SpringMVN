@@ -2,13 +2,18 @@ package com.estsoft.springmvc.domain;
 
 import com.estsoft.springmvc.DTO.article.Article;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
-@Setter
+@NoArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +29,12 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;
-    public Comment(){
 
-    }
+    @Builder
     public Comment(String body, Article article){
         this.body = body;
         this.article = article;
     }
-
     public void updateCommentBody(String body) {
         this.body = body;
     }
